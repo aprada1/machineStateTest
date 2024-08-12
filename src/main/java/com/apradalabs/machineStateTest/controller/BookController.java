@@ -5,6 +5,7 @@ import com.apradalabs.machineStateTest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
@@ -16,7 +17,7 @@ public class BookController {
         return bookService.getAllBooks();
     }
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable String id) {
+    public Optional<Book> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
     @PostMapping
@@ -24,11 +25,11 @@ public class BookController {
         return bookService.addBook(book);
     }
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable String id, @RequestBody Book updatedBook) {
+    public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
         return bookService.updateBook(id, updatedBook);
     }
     @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable String id) {
+    public void deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
     }
 }
